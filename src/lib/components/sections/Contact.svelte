@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
-	import { PUBLIC_FORMSPREE_ENDPOINT } from '$env/static/public';
+	const PUBLIC_FORMSPREE_ENDPOINT = 'https://formspree.io/f/xqennzvd';
 	import SectionLabel from '$lib/components/ui/SectionLabel.svelte';
 	import MagneticButton from '$lib/components/ui/MagneticButton.svelte';
 
