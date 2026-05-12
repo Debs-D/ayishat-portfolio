@@ -28,16 +28,12 @@ static/
 
 ## Environment Variables
 
-Create `.env` (never commit this):
+No environment variables are required. The Formspree endpoint is configured directly in `src/lib/components/sections/Contact.svelte`.
 
+To use a different Formspree form, update the endpoint constant in that file:
+```ts
+const PUBLIC_FORMSPREE_ENDPOINT = 'https://formspree.io/f/your_form_id';
 ```
-PUBLIC_FORMSPREE_ENDPOINT=https://formspree.io/f/your_form_id
-```
-
-**Formspree setup:**
-1. Sign up at [formspree.io](https://formspree.io) (free)
-2. Create a new form connected to your email
-3. Copy the form endpoint URL into `.env`
 
 ## Architecture
 
@@ -82,9 +78,9 @@ All GSAP and Three.js code is dynamically imported inside `onMount` — they nev
 - **Lenis smooth scroll** — replaces layout-thrashing CSS `scroll-behavior: smooth`
 - **`will-change: transform`** on animated elements — promotes to compositor layer
 - **`passive: true`** scroll listeners — never blocks scroll thread
-- **`prefers-reduced-motion`** — all GSAP animations disabled when user requests it
+- **`prefers-reduced-motion`** — CSS disables all transitions/keyframes; GSAP timeline runs at 1000x speed (effectively instant) via `gsap.globalTimeline.timeScale(1000)`
 - **No external icon libraries** — all SVGs inline (no network requests)
-- **System font fallbacks** — Clash Display + Inter load progressively
+- **System font fallbacks** — Space Grotesk + DM Sans load progressively with `display=swap`
 
 ## Accessibility
 
@@ -94,7 +90,7 @@ All GSAP and Three.js code is dynamically imported inside `onMount` — they nev
 - Terminal: `role="dialog"`, `aria-modal`, focus trap, Escape to close
 - Mobile menu: `aria-expanded`, focus trap
 - All images have `alt` text
-- Color contrast: `--accent` (#00E5FF) on `--bg-primary` (#0A0A0F) = **9.3:1** ✓
+- Color contrast: `--accent` (#C16E3D) on `--bg-primary` (#0B1210) = **4.8:1** ✓ (WCAG AA)
 - `prefers-reduced-motion` disables all animations
 - Keyboard-navigable interactive terminal (↑/↓ history, Tab autocomplete)
 - `aria-live` regions for terminal output and form status
@@ -136,7 +132,7 @@ gh repo create ayishat-portfolio --public --source=. --push
 | GSAP via dynamic import | Slightly delayed animation init (~50ms) in exchange for faster initial paint |
 | Geometric avatar placeholder | User must replace with photo for personal touch |
 | Formspree (free tier) | 50 submissions/month — sufficient for portfolio contact volume |
-| `adapter-auto` | Must set Formspree env var in Vercel dashboard (not auto-inferred) |
+| `adapter-vercel` over `adapter-auto` | Explicit adapter is more reliable; auto-detection can fail if adapter isn't installed |
 
 ## Tech Stack
 

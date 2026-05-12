@@ -212,7 +212,7 @@
 			function draw() {
 				ctx.fillStyle = 'rgba(10,10,15,0.05)';
 				ctx.fillRect(0, 0, canvas.width, canvas.height);
-				ctx.fillStyle = '#00E5FF';
+				ctx.fillStyle = '#C16E3D';
 				ctx.font = '14px JetBrains Mono, monospace';
 				drops.forEach((y, i) => {
 					const char = chars[Math.floor(Math.random() * chars.length)];

@@ -32,6 +32,10 @@
 			const { default: Lenis } = await import('lenis');
 			const { gsap } = await import('gsap');
 
+			if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+				gsap.globalTimeline.timeScale(1000);
+			}
+
 			const lenis = new Lenis({
 				duration: 1.2,
 				easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
