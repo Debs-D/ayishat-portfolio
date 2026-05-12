@@ -14,7 +14,7 @@ const COMMANDS: Record<string, () => CommandResult> = {
 	help: () => [
 		{ type: 'info',    text: 'Available commands:' },
 		{ type: 'output',  text: '' },
-		{ type: 'output',  text: '  whoami      — about ayishat' },
+		{ type: 'output',  text: '  whoami / about  — about ayishat' },
 		{ type: 'output',  text: '  projects    — list all projects' },
 		{ type: 'skills',  text: '  skills      — technical skills' } as TerminalLine,
 		{ type: 'output',  text: '  experience  — work history' },
@@ -92,6 +92,7 @@ const COMMANDS: Record<string, () => CommandResult> = {
 		{ type: 'info',   text: 'Or scroll to the Contact section and send a message directly.' }
 	],
 
+	about:    () => COMMANDS.whoami(),
 	github:   () => [{ type: 'info', text: 'Opening GitHub...' }],
 	linkedin: () => [{ type: 'info', text: 'Opening LinkedIn...' }],
 	twitter:  () => [{ type: 'info', text: 'Opening Twitter/X...' }],
@@ -103,13 +104,13 @@ const COMMANDS: Record<string, () => CommandResult> = {
 };
 
 export function handleCommand(input: string): CommandResult | null {
-	const cmd = input.trim().toLowerCase();
+	const cmd = input.trim().toLowerCase().replace(/^['"`]|['"`]$/g, '');
 	if (!cmd) return null;
 	const handler = COMMANDS[cmd];
 	if (!handler) {
 		return [
 			{ type: 'error', text: `command not found: ${cmd}` },
-			{ type: 'info',  text: "type 'help' for available commands" }
+			{ type: 'info',  text: 'type help for available commands' }
 		];
 	}
 	return handler();

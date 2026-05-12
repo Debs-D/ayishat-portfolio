@@ -19,7 +19,7 @@
 		{
 			lines: [
 				{ type: 'success', text: 'SIGNAL://AYISHAT — Interactive Terminal v1.0' },
-				{ type: 'output',  text: "type 'help' to see available commands" },
+				{ type: 'output',  text: 'type  help  to see available commands' },
 				{ type: 'output',  text: '' }
 			]
 		}
