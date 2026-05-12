@@ -69,7 +69,6 @@
 			{/each}
 		</div>
 
-		<!-- Currently learning -->
 		<div class="learning" aria-label="Currently learning">
 			<span class="learning-label">
 				<span class="learning-dot" aria-hidden="true">●</span>
@@ -101,7 +100,7 @@
 		font-size: clamp(2.2rem, 5vw, 3.8rem);
 		font-weight: 700;
 		line-height: 1.1;
-		letter-spacing: -0.03em;
+		letter-spacing: -0.02em;
 		margin-bottom: 16px;
 		color: var(--text-primary);
 	}
@@ -115,7 +114,8 @@
 		font-size: 1rem;
 		color: var(--text-muted);
 		max-width: 480px;
-		line-height: 1.7;
+		line-height: 1.75;
+		font-family: var(--font-body);
 	}
 
 	.skills-grid {
@@ -140,7 +140,7 @@
 	.skill-card:hover {
 		border-color: color-mix(in srgb, var(--group-accent) 35%, transparent);
 		transform: translateY(-4px);
-		box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+		box-shadow: 0 12px 32px rgba(0,0,0,0.18);
 	}
 
 	.card-top {
@@ -157,7 +157,7 @@
 
 	.card-cat {
 		font-family: var(--font-mono);
-		font-size: 0.72rem;
+		font-size: 0.7rem;
 		font-weight: 600;
 		letter-spacing: 0.06em;
 		text-transform: uppercase;
@@ -183,7 +183,6 @@
 
 	.skill-card:hover .pill { color: var(--text-primary); }
 
-	/* Learning */
 	.learning {
 		display: flex;
 		align-items: center;
@@ -198,7 +197,7 @@
 		align-items: center;
 		gap: 8px;
 		font-family: var(--font-mono);
-		font-size: 0.72rem;
+		font-size: 0.7rem;
 		color: var(--text-muted);
 		letter-spacing: 0.06em;
 		text-transform: uppercase;

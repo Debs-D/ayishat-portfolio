@@ -17,7 +17,6 @@
 
 	let cleanup: (() => void) | undefined;
 
-	// Apply theme on mount
 	$effect(() => {
 		if (browser) {
 			document.documentElement.setAttribute('data-theme', $theme);
@@ -27,10 +26,8 @@
 	onMount(async () => {
 		if (!browser) return;
 
-		// Init theme from localStorage
 		theme.init();
 
-		// Lenis smooth scroll + GSAP ticker
 		try {
 			const { default: Lenis } = await import('lenis');
 			const { gsap } = await import('gsap');
@@ -52,17 +49,14 @@
 				lenis.destroy();
 			};
 		} catch {
-			// Lenis not available — native scroll still works
+			// native scroll fallback
 		}
 
-		// Global keyboard shortcuts
 		const onKeyDown = (e: KeyboardEvent) => {
-			// Ctrl+K — open terminal
 			if (e.ctrlKey && e.key === 'k') {
 				e.preventDefault();
 				terminalOpen.toggle();
 			}
-			// Escape — close terminal
 			if (e.key === 'Escape') {
 				terminalOpen.close();
 			}
@@ -79,15 +73,18 @@
 	onDestroy(() => cleanup?.());
 </script>
 
-<!-- Skip to main content -->
+<svelte:head>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+	<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+</svelte:head>
+
 <a href="#main-content" class="skip-link">Skip to main content</a>
 
-<!-- Fixed UI layer -->
 <Cursor />
 <NoiseOverlay />
 <ScrollProgress />
 <Terminal />
 <Navbar />
 
-<!-- Page content -->
 {@render children()}

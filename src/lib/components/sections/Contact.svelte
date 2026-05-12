@@ -13,12 +13,12 @@
 
 	function validate() {
 		const e: Record<string, string> = {};
-		if (!name.trim())                     e.name    = 'Name is required';
-		if (!email.trim())                    e.email   = 'Email is required';
+		if (!name.trim())                    e.name    = 'Name is required';
+		if (!email.trim())                   e.email   = 'Email is required';
 		else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) e.email = 'Invalid email address';
-		if (!subject.trim())                  e.subject = 'Subject is required';
-		if (!message.trim())                  e.message = 'Message is required';
-		else if (message.trim().length < 10)  e.message = 'Message must be at least 10 characters';
+		if (!subject.trim())                 e.subject = 'Subject is required';
+		if (!message.trim())                 e.message = 'Message is required';
+		else if (message.trim().length < 10) e.message = 'Message must be at least 10 characters';
 		return e;
 	}
 
@@ -30,8 +30,7 @@
 		status = 'sending';
 
 		try {
-			const endpoint = PUBLIC_FORMSPREE_ENDPOINT;
-			const res = await fetch(endpoint, {
+			const res = await fetch(PUBLIC_FORMSPREE_ENDPOINT, {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
 				body: JSON.stringify({
@@ -72,7 +71,6 @@
 		</div>
 
 		<div class="contact-body">
-			<!-- Form -->
 			<div class="form-wrap">
 				{#if status === 'success'}
 					<div class="terminal-feedback success" role="status" aria-live="polite">
@@ -94,7 +92,6 @@
 					</div>
 				{:else}
 					<form onsubmit={submit} novalidate aria-label="Contact form">
-						<!-- Name -->
 						<div class="field" class:has-error={errors.name}>
 							<label for="contact-name" class="label">Name</label>
 							<input
@@ -113,7 +110,6 @@
 							{/if}
 						</div>
 
-						<!-- Email -->
 						<div class="field" class:has-error={errors.email}>
 							<label for="contact-email" class="label">Email</label>
 							<input
@@ -132,7 +128,6 @@
 							{/if}
 						</div>
 
-						<!-- Subject -->
 						<div class="field" class:has-error={errors.subject}>
 							<label for="contact-subject" class="label">Subject</label>
 							<input
@@ -150,7 +145,6 @@
 							{/if}
 						</div>
 
-						<!-- Message -->
 						<div class="field" class:has-error={errors.message}>
 							<label for="contact-message" class="label">Message</label>
 							<textarea
@@ -185,7 +179,6 @@
 				{/if}
 			</div>
 
-			<!-- Right info -->
 			<div class="contact-info">
 				<div class="info-item">
 					<span class="info-label">EMAIL</span>
@@ -264,7 +257,6 @@
 		align-items: start;
 	}
 
-	/* Form */
 	form { display: flex; flex-direction: column; gap: 20px; }
 
 	.field { display: flex; flex-direction: column; gap: 6px; }
@@ -299,17 +291,14 @@
 	}
 
 	.has-error input,
-	.has-error textarea {
-		border-color: #EF4444;
-	}
+	.has-error textarea { border-color: #C16E3D; }
 
 	.field-error {
 		font-family: var(--font-mono);
 		font-size: 0.7rem;
-		color: #EF4444;
+		color: #C16E3D;
 	}
 
-	/* Terminal feedback */
 	.terminal-feedback {
 		font-family: var(--font-mono);
 		font-size: 0.85rem;
@@ -324,13 +313,13 @@
 	}
 
 	.terminal-feedback.success { border-color: color-mix(in srgb, var(--accent-green) 30%, transparent); }
-	.terminal-feedback.error   { border-color: color-mix(in srgb, #EF4444 30%, transparent); }
+	.terminal-feedback.error   { border-color: color-mix(in srgb, var(--accent) 30%, transparent); }
 
 	.fb-prompt  { color: var(--accent); }
 	.fb-cmd     { color: var(--text-primary); }
 	.fb-output  { color: var(--text-muted); padding-left: 4px; }
 	.success-text { color: var(--accent-green); }
-	.error-text   { color: #EF4444; }
+	.error-text   { color: var(--accent); }
 	.muted        { color: var(--text-dim); }
 
 	.fb-reset {
@@ -347,7 +336,6 @@
 	}
 	.fb-reset:hover { opacity: 0.7; }
 
-	/* Spinner */
 	.spinner {
 		width: 14px;
 		height: 14px;
@@ -360,7 +348,6 @@
 
 	@keyframes spin { to { transform: rotate(360deg); } }
 
-	/* Right info */
 	.contact-info { display: flex; flex-direction: column; gap: 24px; padding-top: 8px; }
 
 	.info-item { display: flex; flex-direction: column; gap: 10px; }

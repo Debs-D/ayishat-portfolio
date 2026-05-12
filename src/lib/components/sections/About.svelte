@@ -11,14 +11,11 @@
 		{ label: 'Projects\nBuilt',    target: 6, display: 0, suffix: '+' },
 		{ label: 'Companies\nWorked',  target: 5, display: 0, suffix: '' }
 	]);
-	let headlineVisible = $state(false);
-	let statsVisible = $state(false);
 	let cleanup: (() => void) | undefined;
 
 	onMount(async () => {
 		if (!browser) return;
 
-		// GSAP headline stagger
 		try {
 			const { gsap } = await import('gsap');
 			const { ScrollTrigger } = await import('gsap/ScrollTrigger');
@@ -26,7 +23,7 @@
 
 			const h2 = sectionEl?.querySelector('.about-headline');
 			if (h2) {
-				const text = h2.textContent ?? '';
+				const text  = h2.textContent ?? '';
 				const words = text.split(' ');
 				h2.innerHTML = words
 					.map((w) => `<span class="word"><span class="word-inner">${w}</span></span>`)
@@ -46,7 +43,6 @@
 				});
 			}
 
-			// Counters
 			const observer = new IntersectionObserver(
 				(entries) => {
 					if (entries[0].isIntersecting) {
@@ -70,7 +66,6 @@
 			);
 			if (statsEl) observer.observe(statsEl);
 
-			// Skill tags stagger
 			const tags = sectionEl?.querySelectorAll('.skill-tag');
 			if (tags?.length) {
 				gsap.from(tags, {
@@ -90,8 +85,7 @@
 				if (t.trigger === h2 || t.trigger === sectionEl?.querySelector('.skill-tags')) t.kill();
 			});
 		} catch {
-			// fallback: show everything
-			headlineVisible = true;
+			// fallback
 		}
 	});
 
@@ -107,7 +101,6 @@
 
 <section id="about" class="section about" aria-label="About" bind:this={sectionEl}>
 	<div class="about-inner">
-		<!-- Left column -->
 		<div class="left">
 			<SectionLabel number="01" title="About" />
 
@@ -132,13 +125,11 @@
 				</p>
 			</div>
 
-			<!-- Currently at -->
 			<div class="current-badge" aria-label="Current role">
 				<span class="badge-dot" aria-hidden="true">⚡</span>
 				<span>Baige Wallet — Frontend Developer</span>
 			</div>
 
-			<!-- Skill tags -->
 			<div class="skill-tags" aria-label="Key skills">
 				{#each skills as skill}
 					<span class="skill-tag">{skill}</span>
@@ -153,34 +144,29 @@
 			</div>
 		</div>
 
-		<!-- Right column -->
 		<div class="right">
-			<!-- Avatar placeholder -->
 			<div class="avatar-wrapper" aria-label="Profile illustration">
 				<div class="avatar-bg" aria-hidden="true">
 					<svg width="100%" height="100%" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
 						<defs>
 							<linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-								<stop offset="0%" stop-color="#00E5FF" stop-opacity="0.15"/>
-								<stop offset="100%" stop-color="#A855F7" stop-opacity="0.08"/>
+								<stop offset="0%" stop-color="#C16E3D" stop-opacity="0.18"/>
+								<stop offset="100%" stop-color="#183B2D" stop-opacity="0.1"/>
 							</linearGradient>
 						</defs>
-						<circle cx="150" cy="150" r="148" fill="url(#grad1)" stroke="#00E5FF" stroke-width="1" stroke-opacity="0.3"/>
-						<circle cx="150" cy="120" r="50" fill="#1A1A24" stroke="#00E5FF" stroke-width="1" stroke-opacity="0.4"/>
-						<ellipse cx="150" cy="210" rx="75" ry="50" fill="#1A1A24" stroke="#00E5FF" stroke-width="1" stroke-opacity="0.3"/>
-						<!-- Decorative lines -->
-						<line x1="30" y1="80"  x2="100" y2="50"  stroke="#00E5FF" stroke-width="0.5" stroke-opacity="0.25"/>
-						<line x1="200" y1="40"  x2="270" y2="90"  stroke="#A855F7" stroke-width="0.5" stroke-opacity="0.25"/>
-						<line x1="20" y1="200" x2="80"  y2="260"  stroke="#00E5FF" stroke-width="0.5" stroke-opacity="0.25"/>
-						<line x1="220" y1="240" x2="280" y2="190" stroke="#A855F7" stroke-width="0.5" stroke-opacity="0.25"/>
-						<!-- AO monogram -->
-						<text x="150" y="128" text-anchor="middle" font-family="Clash Display, sans-serif" font-size="36" fill="#00E5FF" fill-opacity="0.9" font-weight="700">AO</text>
-						<text x="150" y="220" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#6B7280" letter-spacing="3">FRONTEND DEV</text>
+						<circle cx="150" cy="150" r="148" fill="url(#grad1)" stroke="#C16E3D" stroke-width="1" stroke-opacity="0.3"/>
+						<circle cx="150" cy="120" r="50" fill="#1A2320" stroke="#C16E3D" stroke-width="1" stroke-opacity="0.4"/>
+						<ellipse cx="150" cy="210" rx="75" ry="50" fill="#1A2320" stroke="#C16E3D" stroke-width="1" stroke-opacity="0.3"/>
+						<line x1="30"  y1="80"  x2="100" y2="50"  stroke="#C16E3D" stroke-width="0.5" stroke-opacity="0.25"/>
+						<line x1="200" y1="40"  x2="270" y2="90"  stroke="#183B2D" stroke-width="0.5" stroke-opacity="0.3"/>
+						<line x1="20"  y1="200" x2="80"  y2="260" stroke="#C16E3D" stroke-width="0.5" stroke-opacity="0.25"/>
+						<line x1="220" y1="240" x2="280" y2="190" stroke="#183B2D" stroke-width="0.5" stroke-opacity="0.3"/>
+						<text x="150" y="128" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="36" fill="#C16E3D" fill-opacity="0.9" font-weight="700">AO</text>
+						<text x="150" y="220" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#7A8E85" letter-spacing="3">FRONTEND DEV</text>
 					</svg>
 				</div>
 			</div>
 
-			<!-- Stats -->
 			<div class="stats" bind:this={statsEl} aria-label="Career statistics">
 				{#each counters as counter}
 					<div class="stat">
@@ -207,7 +193,6 @@
 		margin: 0 auto;
 	}
 
-	/* Headline */
 	.about-headline {
 		font-family: var(--font-display);
 		font-size: clamp(2rem, 4.5vw, 3.2rem);
@@ -227,7 +212,6 @@
 		display: inline-block;
 	}
 
-	/* Text */
 	.about-text {
 		display: flex;
 		flex-direction: column;
@@ -244,7 +228,6 @@
 	.about-text strong { color: var(--text-primary); font-weight: 600; }
 	.about-text em     { color: var(--accent); font-style: normal; }
 
-	/* Current badge */
 	.current-badge {
 		display: inline-flex;
 		align-items: center;
@@ -259,7 +242,6 @@
 		margin-bottom: 28px;
 	}
 
-	/* Skills */
 	.skill-tags {
 		display: flex;
 		flex-wrap: wrap;
@@ -282,10 +264,7 @@
 		border-color: color-mix(in srgb, var(--accent) 30%, transparent);
 	}
 
-	/* Avatar */
-	.avatar-wrapper {
-		margin-bottom: 32px;
-	}
+	.avatar-wrapper { margin-bottom: 32px; }
 
 	.avatar-bg {
 		width: 100%;
@@ -300,7 +279,6 @@
 			inset 0 0 40px rgba(0,0,0,0.3);
 	}
 
-	/* Stats */
 	.stats {
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
@@ -339,6 +317,5 @@
 		.about-inner { grid-template-columns: 1fr; }
 		.right { order: -1; }
 		.avatar-bg { max-width: 200px; }
-		.stats { grid-template-columns: repeat(3, 1fr); }
 	}
 </style>

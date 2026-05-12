@@ -23,7 +23,6 @@
 		const onScroll = () => { scrolled = window.scrollY > 60; };
 		window.addEventListener('scroll', onScroll, { passive: true });
 
-		// Intersection Observer for active section
 		const sections = document.querySelectorAll('section[id]');
 		const observer = new IntersectionObserver(
 			(entries) => {
@@ -58,7 +57,6 @@
 
 <header class="navbar" class:scrolled>
 	<nav aria-label="Main navigation">
-		<!-- Logo -->
 		<button
 			class="logo"
 			onclick={() => scrollTo('hero')}
@@ -67,7 +65,6 @@
 			<span>AO</span>
 		</button>
 
-		<!-- Desktop links -->
 		<ul class="nav-links" role="list">
 			{#each navLinks as link}
 				<li>
@@ -83,9 +80,7 @@
 			{/each}
 		</ul>
 
-		<!-- Actions -->
 		<div class="nav-actions">
-			<!-- Terminal trigger -->
 			<button
 				class="term-btn"
 				onclick={() => terminalOpen.open()}
@@ -101,7 +96,6 @@
 
 			<ThemeToggle />
 
-			<!-- Mobile hamburger -->
 			<button
 				class="hamburger"
 				onclick={() => { menuOpen = !menuOpen; }}
@@ -117,7 +111,6 @@
 	</nav>
 </header>
 
-<!-- Mobile menu overlay -->
 {#if menuOpen}
 	<div
 		id="mobile-menu"
@@ -168,14 +161,14 @@
 	}
 
 	.navbar.scrolled {
-		background: rgba(10, 10, 15, 0.85);
+		background: rgba(11, 18, 16, 0.88);
 		backdrop-filter: blur(16px);
 		-webkit-backdrop-filter: blur(16px);
 		border-color: var(--border);
 	}
 
 	:global([data-theme="light"]) .navbar.scrolled {
-		background: rgba(248, 247, 242, 0.85);
+		background: rgba(246, 243, 238, 0.88);
 	}
 
 	nav {
@@ -187,7 +180,6 @@
 		margin: 0 auto;
 	}
 
-	/* Logo */
 	.logo {
 		font-family: var(--font-display);
 		font-size: 1.25rem;
@@ -202,7 +194,6 @@
 	.logo span { color: var(--accent); }
 	.logo:hover { opacity: 0.8; }
 
-	/* Desktop links */
 	.nav-links {
 		display: flex;
 		align-items: center;
@@ -228,7 +219,6 @@
 	.nav-link:hover { color: var(--text-primary); }
 	.nav-link.active { color: var(--accent); }
 
-	/* Actions */
 	.nav-actions {
 		display: flex;
 		align-items: center;
@@ -252,7 +242,6 @@
 	.term-btn:hover { color: var(--accent); border-color: var(--accent); }
 	.term-label { letter-spacing: 0.05em; }
 
-	/* Hamburger */
 	.hamburger {
 		display: none;
 		flex-direction: column;
@@ -280,7 +269,6 @@
 	.bar.open:nth-child(2) { opacity: 0; transform: scaleX(0); }
 	.bar.open:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
-	/* Mobile menu */
 	.mobile-menu {
 		position: fixed;
 		inset: 0;

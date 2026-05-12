@@ -29,7 +29,6 @@
 				}
 			});
 
-			// Role cards fade in
 			const cards = sectionEl?.querySelectorAll('.role-card');
 			gsap.from(cards, {
 				x: -30,
@@ -59,7 +58,6 @@
 		</div>
 
 		<div class="timeline-wrap">
-			<!-- SVG line -->
 			<svg class="timeline-svg" aria-hidden="true" preserveAspectRatio="none">
 				<path
 					bind:this={lineEl}
@@ -67,18 +65,16 @@
 					stroke="var(--accent)"
 					stroke-width="1"
 					fill="none"
-					stroke-opacity="0.6"
+					stroke-opacity="0.5"
 				/>
 			</svg>
 
-			<!-- Roles -->
 			<div class="roles">
 				{#each roles as role, i}
 					<article
 						class="role-card"
 						class:expanded={expandedIndex === i}
 					>
-						<!-- Timeline dot -->
 						<div class="tl-dot" aria-hidden="true">
 							<div
 								class="dot"
@@ -86,7 +82,6 @@
 							></div>
 						</div>
 
-						<!-- Card content -->
 						<button
 							class="role-header"
 							onclick={() => { expandedIndex = expandedIndex === i ? null : i; }}
@@ -144,9 +139,8 @@
 			</div>
 		</div>
 
-		<!-- Education -->
 		<div class="edu-section" aria-labelledby="edu-heading">
-			<h3 id="edu-heading" class="sub-heading">EDUCATION</h3>
+			<h3 id="edu-heading" class="sub-heading">Education</h3>
 			<div class="edu-grid">
 				{#each education as edu}
 					<div class="edu-card">
@@ -158,9 +152,8 @@
 			</div>
 		</div>
 
-		<!-- Certifications -->
 		<div class="cert-section" aria-labelledby="cert-heading">
-			<h3 id="cert-heading" class="sub-heading">CERTIFICATIONS</h3>
+			<h3 id="cert-heading" class="sub-heading">Certifications</h3>
 			<div class="cert-pills">
 				{#each certifications as cert}
 					<span class="cert-pill">{cert.name} <span class="cert-year">{cert.year}</span></span>
@@ -180,7 +173,7 @@
 		font-size: clamp(2.2rem, 5vw, 3.8rem);
 		font-weight: 700;
 		line-height: 1.1;
-		letter-spacing: -0.03em;
+		letter-spacing: -0.02em;
 		margin-bottom: clamp(40px, 5vw, 64px);
 		color: var(--text-primary);
 	}
@@ -190,7 +183,6 @@
 		color: transparent;
 	}
 
-	/* Timeline */
 	.timeline-wrap { position: relative; margin-bottom: 64px; }
 
 	.timeline-svg {
@@ -217,7 +209,6 @@
 	.role-card:hover,
 	.role-card.expanded { border-color: var(--border-light); }
 
-	/* Dot */
 	.tl-dot {
 		position: absolute;
 		left: -46px;
@@ -237,7 +228,6 @@
 		box-shadow: 0 0 8px color-mix(in srgb, var(--accent) 40%, transparent);
 	}
 
-	/* Card header */
 	.role-header {
 		width: 100%;
 		background: none;
@@ -258,8 +248,8 @@
 
 	.role-company {
 		font-family: var(--font-display);
-		font-size: 1.1rem;
-		font-weight: 700;
+		font-size: 1.15rem;
+		font-weight: 600;
 		color: var(--text-primary);
 	}
 
@@ -294,16 +284,16 @@
 	.role-title {
 		font-size: 0.875rem;
 		color: var(--text-muted);
+		font-family: var(--font-body);
 	}
 
 	.role-period {
 		font-family: var(--font-mono);
-		font-size: 0.72rem;
+		font-size: 0.7rem;
 		color: var(--text-dim);
 		white-space: nowrap;
 	}
 
-	/* Details */
 	.role-details {
 		padding: 0 24px 20px;
 		border-top: 1px solid var(--border);
@@ -323,15 +313,16 @@
 		padding-left: 16px;
 		font-size: 0.875rem;
 		color: var(--text-muted);
-		line-height: 1.65;
+		line-height: 1.7;
+		font-family: var(--font-body);
 	}
 	.highlights li::before {
-		content: '▸';
+		content: '✦';
 		position: absolute;
 		left: 0;
 		color: var(--accent);
-		font-size: 0.65rem;
-		top: 3px;
+		font-size: 0.5rem;
+		top: 5px;
 	}
 
 	.role-tech { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
@@ -348,20 +339,20 @@
 
 	.role-link {
 		font-family: var(--font-mono);
-		font-size: 0.72rem;
+		font-size: 0.7rem;
 		color: var(--accent-dim);
 		text-decoration: none;
 		transition: color var(--transition-base);
 	}
 	.role-link:hover { color: var(--accent); }
 
-	/* Education */
 	.sub-heading {
 		font-family: var(--font-mono);
-		font-size: 0.72rem;
-		letter-spacing: 0.12em;
-		color: var(--text-muted);
+		font-size: 0.7rem;
+		font-weight: 600;
+		letter-spacing: 0.1em;
 		text-transform: uppercase;
+		color: var(--text-muted);
 		margin-bottom: 16px;
 	}
 
@@ -381,20 +372,19 @@
 
 	.edu-degree {
 		font-family: var(--font-display);
-		font-size: 0.95rem;
+		font-size: 1rem;
 		font-weight: 600;
 		color: var(--text-primary);
 	}
 
-	.edu-inst { font-size: 0.875rem; color: var(--text-muted); }
-	.edu-period { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-dim); }
+	.edu-inst { font-size: 0.875rem; color: var(--text-muted); font-family: var(--font-body); }
+	.edu-period { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-dim); }
 
-	/* Certs */
 	.cert-pills { display: flex; flex-wrap: wrap; gap: 8px; }
 
 	.cert-pill {
 		font-family: var(--font-mono);
-		font-size: 0.72rem;
+		font-size: 0.7rem;
 		padding: 6px 14px;
 		background: var(--bg-tertiary);
 		border: 1px solid var(--border);

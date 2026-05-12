@@ -10,37 +10,37 @@ export const skillGroups: SkillGroup[] = [
 		category: 'Languages & Frameworks',
 		icon: '⚡',
 		skills: ['React', 'Next.js', 'SvelteKit', 'TypeScript', 'JavaScript (ES6+)', 'HTML5', 'CSS3', 'Node.js', 'Ionic'],
-		accent: '#00E5FF'
+		accent: '#D4895A'
 	},
 	{
 		category: 'Styling & UI',
 		icon: '🎨',
 		skills: ['Tailwind CSS', 'Responsive Design', 'Mobile-First', 'Figma', 'CSS Animations', 'GSAP', 'SCSS'],
-		accent: '#A855F7'
+		accent: '#C47A8A'
 	},
 	{
 		category: 'State & APIs',
 		icon: '🔗',
 		skills: ['Zustand', 'REST APIs', 'GraphQL', 'WebSockets', 'React Query', 'Third-Party Integrations'],
-		accent: '#10B981'
+		accent: '#7BAE8A'
 	},
 	{
 		category: 'Tools & DevOps',
 		icon: '🛠',
 		skills: ['Git & GitHub', 'Webpack', 'Docker', 'Azure Functions', 'CI/CD', 'Jira', 'Confluence', 'Vercel', 'Netlify'],
-		accent: '#F59E0B'
+		accent: '#E8C17A'
 	},
 	{
 		category: 'Testing & Quality',
 		icon: '✅',
 		skills: ['Jest', 'Cypress', 'Karma / Jasmine', 'Unit Testing', 'Cross-Browser Compatibility', 'Performance Optimization'],
-		accent: '#EF4444'
+		accent: '#B87870'
 	},
 	{
 		category: 'Domain Expertise',
 		icon: '🏦',
 		skills: ['Fintech Platforms', 'Banking Operations', 'Payment Gateways', 'KYC Flows', 'PCI Compliance', 'Agency Banking', 'POS Systems'],
-		accent: '#3B82F6'
+		accent: '#8AABBF'
 	}
 ];
 

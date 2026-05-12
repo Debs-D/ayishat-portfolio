@@ -23,11 +23,11 @@
 	<Contact />
 	<footer class="footer">
 		<div class="footer-inner">
-			<span class="footer-name">AYISHAT ODEKUNLE</span>
+			<span class="footer-name">Ayishat Odekunle</span>
 			<span class="footer-copy" aria-label="Copyright 2025">© 2025</span>
 			<span class="footer-built">
-				BUILT WITH
-				<a href="https://kit.svelte.dev" target="_blank" rel="noopener noreferrer" aria-label="SvelteKit website">SVELTEKIT</a>
+				Built with
+				<a href="https://kit.svelte.dev" target="_blank" rel="noopener noreferrer" aria-label="SvelteKit website">SvelteKit</a>
 				&
 				<a href="https://gsap.com" target="_blank" rel="noopener noreferrer" aria-label="GSAP website">GSAP</a>
 			</span>
@@ -53,10 +53,16 @@
 		font-family: var(--font-mono);
 		font-size: 0.7rem;
 		color: var(--text-dim);
-		letter-spacing: 0.08em;
+		letter-spacing: 0.06em;
 	}
 
-	.footer-name { color: var(--text-muted); }
+	.footer-name {
+		font-family: var(--font-mono);
+		font-size: 0.7rem;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--text-muted);
+	}
 
 	.footer-built a {
 		color: var(--text-muted);

@@ -34,7 +34,6 @@
 		window.addEventListener('keydown', skip, { once: true });
 		window.addEventListener('click', skip, { once: true });
 
-		// Phase 1: typing intro
 		const intro = '> CONNECTING TO AYISHAT.DEV...';
 		for (let i = 0; i <= intro.length; i++) {
 			lines = [intro.slice(0, i)];
@@ -43,7 +42,6 @@
 		await delay(200);
 		lines = [...lines, ''];
 
-		// Phase 2: loading bars
 		for (const item of loadItems) {
 			bars = [...bars, { label: item.label, pct: 0 }];
 			for (let p = 0; p <= item.final; p += 4) {
@@ -60,11 +58,9 @@
 
 		await delay(300);
 
-		// Phase 3: granted
 		showGranted = true;
 		await delay(600);
 
-		// Fade out
 		done = true;
 		visible = false;
 		bootComplete.complete();
@@ -75,7 +71,7 @@
 	}
 
 	function barFill(pct: number) {
-		const len = 20;
+		const len    = 20;
 		const filled = Math.round((pct / 100) * len);
 		return '█'.repeat(filled) + '░'.repeat(len - filled);
 	}

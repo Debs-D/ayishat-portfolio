@@ -23,7 +23,7 @@ export const projects: Project[] = [
 		tech: ['JavaScript', 'AI/LLM API', 'HTML5', 'CSS3'],
 		live: undefined,
 		github: 'https://github.com/Debs-D/ai-page-summarizer',
-		accent: '#00E5FF',
+		accent: '#D4895A',
 		featured: true
 	},
 	{
@@ -36,20 +36,20 @@ export const projects: Project[] = [
 		tech: ['JavaScript', 'Web Crypto API', 'JWT', 'REST API', 'Vercel'],
 		live: 'https://whisperbox-jet.vercel.app',
 		github: undefined,
-		accent: '#A855F7',
+		accent: '#C47A8A',
 		featured: true
 	},
 	{
 		id: 'ufuon-store',
 		number: '03',
 		title: 'Ufuon STEM Store',
-		tagline: 'E-commerce for Africa\'s next generation of makers.',
+		tagline: "E-commerce for Africa's next generation of makers.",
 		description:
 			'Full storefront for Ufuon — a platform empowering African students with electronics and IoT components. Complete auth flows, shopping cart, Paystack payment integration, product filtering, and dedicated product pages.',
 		tech: ['React', 'Tailwind CSS', 'Paystack', 'REST API'],
 		live: 'https://store-front-bice.vercel.app',
 		github: 'https://github.com/Debs-D/store-front',
-		accent: '#10B981',
+		accent: '#7BAE8A',
 		featured: true
 	},
 	{
@@ -62,7 +62,7 @@ export const projects: Project[] = [
 		tech: ['React', 'Tailwind CSS', 'JavaScript', 'REST API'],
 		live: 'https://hngtticket-app.netlify.app',
 		github: 'https://github.com/Debs-D/Ticket-App',
-		accent: '#F59E0B',
+		accent: '#E8C17A',
 		featured: false
 	},
 	{
@@ -75,7 +75,7 @@ export const projects: Project[] = [
 		tech: ['Next.js', 'TypeScript', 'Zod', 'react-hook-form', 'Tailwind CSS'],
 		live: 'https://my-blog-indol-alpha.vercel.app',
 		github: 'https://github.com/Debs-D/MyBlog',
-		accent: '#EF4444',
+		accent: '#B87870',
 		featured: false
 	},
 	{
@@ -88,7 +88,7 @@ export const projects: Project[] = [
 		tech: ['React', 'TMDB API', 'JavaScript', 'CSS3'],
 		live: 'https://moviebox-blue.vercel.app',
 		github: 'https://github.com/Debs-D/moviebox',
-		accent: '#3B82F6',
+		accent: '#8AABBF',
 		featured: false
 	}
 ];

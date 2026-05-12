@@ -20,13 +20,11 @@
 	async function typeSubtitle() {
 		while (true) {
 			const text = subtitles[subtitleIndex % subtitles.length];
-			// Type forward
 			for (let i = 0; i <= text.length; i++) {
 				typedText = text.slice(0, i);
 				await delay(70);
 			}
 			await delay(1800);
-			// Erase
 			for (let i = text.length; i >= 0; i--) {
 				typedText = text.slice(0, i);
 				await delay(40);
@@ -43,17 +41,13 @@
 	onMount(async () => {
 		if (!browser) return;
 
-		// Glitch on load
 		glitchActive = true;
 		setTimeout(() => { glitchActive = false; }, 1200);
 
-		// Caret blink
 		const caretInterval = setInterval(() => { showCaret = !showCaret; }, 530);
 
-		// Start typing
 		typeSubtitle();
 
-		// Init Three.js particles
 		try {
 			const THREE = await import('three');
 			const scene    = new THREE.Scene();
@@ -64,9 +58,8 @@
 			renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 			camera.position.z = 4;
 
-			// Particles
 			const count = 900;
-			const positions = new Float32Array(count * 3);
+			const positions  = new Float32Array(count * 3);
 			const velocities = new Float32Array(count * 3);
 			for (let i = 0; i < count; i++) {
 				positions[i * 3]     = (Math.random() - 0.5) * 10;
@@ -81,17 +74,16 @@
 			geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
 
 			const mat = new THREE.PointsMaterial({
-				color: 0x00e5ff,
-				size: 0.025,
+				color: 0xC16E3D,
+				size: 0.028,
 				transparent: true,
-				opacity: 0.6,
+				opacity: 0.7,
 				sizeAttenuation: true
 			});
 
 			const points = new THREE.Points(geo, mat);
 			scene.add(points);
 
-			// Mouse tilt
 			let mx = 0, my = 0;
 			const onMouseMove = (e: MouseEvent) => {
 				mx = (e.clientX / window.innerWidth  - 0.5) * 0.3;
@@ -99,7 +91,6 @@
 			};
 			window.addEventListener('mousemove', onMouseMove);
 
-			// Resize
 			const onResize = () => {
 				if (!canvasEl) return;
 				camera.aspect = canvasEl.clientWidth / canvasEl.clientHeight;
@@ -108,25 +99,21 @@
 			};
 			window.addEventListener('resize', onResize);
 
-			// Animate
 			let rafId: number;
 			const tick = () => {
 				rafId = requestAnimationFrame(tick);
 
-				// Move particles
 				const pos = geo.attributes.position.array as Float32Array;
 				for (let i = 0; i < count; i++) {
 					pos[i * 3]     += velocities[i * 3];
 					pos[i * 3 + 1] += velocities[i * 3 + 1];
-					// wrap
-					if (pos[i * 3] > 5)  pos[i * 3] = -5;
-					if (pos[i * 3] < -5) pos[i * 3] = 5;
-					if (pos[i * 3 + 1] > 5)  pos[i * 3 + 1] = -5;
-					if (pos[i * 3 + 1] < -5) pos[i * 3 + 1] = 5;
+					if (pos[i * 3] > 5)       pos[i * 3] = -5;
+					if (pos[i * 3] < -5)      pos[i * 3] = 5;
+					if (pos[i * 3 + 1] > 5)   pos[i * 3 + 1] = -5;
+					if (pos[i * 3 + 1] < -5)  pos[i * 3 + 1] = 5;
 				}
 				geo.attributes.position.needsUpdate = true;
 
-				// Mouse tilt
 				scene.rotation.x += (my - scene.rotation.x) * 0.04;
 				scene.rotation.y += (mx - scene.rotation.y) * 0.04;
 
@@ -151,13 +138,11 @@
 
 <section id="hero" class="hero" aria-label="Hero">
 	<div class="hero-content">
-		<!-- Status badge -->
 		<div class="status-badge" aria-label="Availability status">
 			<span class="pulse-dot" aria-hidden="true"></span>
 			Available for work
 		</div>
 
-		<!-- Main headline -->
 		<div class="headline" aria-label="Frontend Developer">
 			<div class="line-wrap">
 				<span class="h-line solid">FRONTEND</span>
@@ -167,7 +152,6 @@
 			</div>
 		</div>
 
-		<!-- Glitch name -->
 		<div class="name-wrapper" aria-label="Ayishat Odekunle">
 			<h1
 				class="name"
@@ -178,17 +162,14 @@
 			</h1>
 		</div>
 
-		<!-- Typing subtitle -->
 		<p class="subtitle" aria-live="polite">
 			<span>{typedText}</span><span class="caret" class:visible={showCaret} aria-hidden="true">|</span>
 		</p>
 
-		<!-- Bio -->
 		<p class="bio">
 			Frontend developer building fast, accessible fintech experiences — from Lagos to the world.
 		</p>
 
-		<!-- CTAs -->
 		<div class="ctas">
 			<MagneticButton href="#projects" variant="primary" ariaLabel="View my work">
 				VIEW MY WORK →
@@ -198,7 +179,6 @@
 			</MagneticButton>
 		</div>
 
-		<!-- Socials -->
 		<div class="socials" aria-label="Social links">
 			<a href="https://github.com/Debs-D" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">
 				<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
@@ -214,19 +194,16 @@
 			</a>
 		</div>
 
-		<!-- Location -->
 		<p class="location" aria-label="Location: Lagos, Nigeria">
 			<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
 			Lagos, Nigeria
 		</p>
 	</div>
 
-	<!-- Canvas (right side) -->
 	<div class="canvas-wrapper" aria-hidden="true">
 		<canvas bind:this={canvasEl}></canvas>
 	</div>
 
-	<!-- Scroll hint -->
 	<div class="scroll-hint" aria-hidden="true">
 		<span>SCROLL</span>
 		<div class="scroll-line"></div>
@@ -250,7 +227,6 @@
 		flex-shrink: 0;
 	}
 
-	/* Status badge */
 	.status-badge {
 		display: inline-flex;
 		align-items: center;
@@ -280,7 +256,6 @@
 		50%       { box-shadow: 0 0 0 5px transparent; }
 	}
 
-	/* Headline */
 	.headline {
 		margin-bottom: 16px;
 		overflow: hidden;
@@ -312,7 +287,6 @@
 		color: transparent;
 	}
 
-	/* Glitch Name */
 	.name-wrapper { position: relative; margin-bottom: 20px; }
 
 	.name {
@@ -324,9 +298,7 @@
 		color: var(--accent);
 	}
 
-	.name.glitch {
-		position: relative;
-	}
+	.name.glitch { position: relative; }
 	.name.glitch::before,
 	.name.glitch::after {
 		content: attr(data-text);
@@ -338,14 +310,13 @@
 	}
 	.name.glitch::before {
 		animation: glitch-1 0.3s steps(1) 3;
-		color: #ff00c8;
+		color: #E87A40;
 	}
 	.name.glitch::after {
 		animation: glitch-2 0.3s steps(1) 3;
-		color: #00fff9;
+		color: #2A8B68;
 	}
 
-	/* Subtitle */
 	.subtitle {
 		font-family: var(--font-mono);
 		font-size: clamp(1rem, 2.5vw, 1.3rem);
@@ -361,7 +332,6 @@
 	}
 	.caret.visible { opacity: 1; }
 
-	/* Bio */
 	.bio {
 		font-size: clamp(0.95rem, 1.8vw, 1.05rem);
 		color: var(--text-muted);
@@ -370,7 +340,6 @@
 		max-width: 480px;
 	}
 
-	/* CTAs */
 	.ctas {
 		display: flex;
 		flex-wrap: wrap;
@@ -378,7 +347,6 @@
 		margin-bottom: 36px;
 	}
 
-	/* Socials */
 	.socials {
 		display: flex;
 		gap: 16px;
@@ -396,7 +364,6 @@
 		transform: translateY(-2px);
 	}
 
-	/* Location */
 	.location {
 		display: flex;
 		align-items: center;
@@ -407,7 +374,6 @@
 		letter-spacing: 0.04em;
 	}
 
-	/* Canvas */
 	.canvas-wrapper {
 		position: absolute;
 		top: 0;
@@ -423,7 +389,6 @@
 		display: block;
 	}
 
-	/* Scroll hint */
 	.scroll-hint {
 		position: absolute;
 		bottom: 36px;

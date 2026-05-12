@@ -132,8 +132,8 @@
 								class="card-visual"
 								style="
 									background: linear-gradient(135deg,
-										color-mix(in srgb, {project.accent} 12%, #0A0A0F),
-										color-mix(in srgb, {project.accent} 4%, #111118)
+										color-mix(in srgb, {project.accent} 12%, var(--bg-primary)),
+										color-mix(in srgb, {project.accent} 4%, var(--bg-secondary))
 									);
 									border-color: color-mix(in srgb, {project.accent} 20%, transparent);
 								"
@@ -217,9 +217,9 @@
 	.projects-title {
 		font-family: var(--font-display);
 		font-size: clamp(3rem, 8vw, 6rem);
-		font-weight: 700;
+		font-weight: 600;
 		line-height: 1;
-		letter-spacing: -0.03em;
+		letter-spacing: -0.02em;
 		margin-bottom: 16px;
 	}
 	.projects-title .solid { color: var(--text-primary); }

@@ -18,7 +18,7 @@
 		align-items: center;
 		gap: 10px;
 		font-family: var(--font-mono);
-		font-size: 0.72rem;
+		font-size: 0.7rem;
 		font-weight: 500;
 		letter-spacing: 0.15em;
 		text-transform: uppercase;

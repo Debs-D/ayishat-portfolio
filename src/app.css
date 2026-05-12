@@ -1,25 +1,24 @@
 @import "tailwindcss";
 
-/* ─── Fonts ──────────────────────────────────────── */
 @layer base {
   :root {
-    /* Dark mode (default) */
-    --bg-primary:    #0A0A0F;
-    --bg-secondary:  #111118;
-    --bg-tertiary:   #1A1A24;
-    --accent:        #00E5FF;
-    --accent-dim:    #00B8CC;
-    --accent-purple: #A855F7;
-    --accent-green:  #10B981;
-    --text-primary:  #F0EEE8;
-    --text-muted:    #6B7280;
-    --text-dim:      #374151;
-    --border:        #1F1F2E;
-    --border-light:  #2A2A38;
+    --bg-primary:    #0B1210;
+    --bg-secondary:  #131A15;
+    --bg-tertiary:   #1A2320;
+    --accent:        #C16E3D;
+    --accent-dim:    #A55A2E;
+    --accent-warm:   #183B2D;
+    --accent-purple: #4A8B6B;
+    --accent-green:  #5A9E7A;
+    --text-primary:  #F0EDE8;
+    --text-muted:    #7A8E85;
+    --text-dim:      #3A5045;
+    --border:        #1C2A24;
+    --border-light:  #283A30;
 
-    --font-display:  'Clash Display', 'Inter', sans-serif;
-    --font-body:     'Inter', system-ui, sans-serif;
-    --font-mono:     'JetBrains Mono', 'Fira Code', monospace;
+    --font-display: 'Space Grotesk', 'DM Sans', system-ui, sans-serif;
+    --font-body:    'DM Sans', system-ui, sans-serif;
+    --font-mono:    'JetBrains Mono', 'Fira Code', monospace;
 
     --radius-sm:  4px;
     --radius-md:  8px;
@@ -33,20 +32,22 @@
   }
 
   [data-theme="light"] {
-    --bg-primary:   #F8F7F2;
-    --bg-secondary: #EEEAE0;
-    --bg-tertiary:  #E4DFD5;
-    --accent:       #0096AA;
-    --accent-dim:   #007A8C;
-    --text-primary: #0A0A0F;
-    --text-muted:   #52525B;
-    --text-dim:     #A1A1AA;
-    --border:       #D1CFC8;
-    --border-light: #E2DED6;
+    --bg-primary:    #F6F3EE;
+    --bg-secondary:  #ECE8E0;
+    --bg-tertiary:   #E2DDD0;
+    --accent:        #C16E3D;
+    --accent-dim:    #A55A2E;
+    --accent-warm:   #183B2D;
+    --accent-purple: #2A6B50;
+    --accent-green:  #3A7A60;
+    --text-primary:  #161616;
+    --text-muted:    #6B6B6B;
+    --text-dim:      #B0ADA8;
+    --border:        #D5D0C8;
+    --border-light:  #E0DDD6;
   }
 }
 
-/* ─── Global Reset & Base ────────────────────────── */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -75,11 +76,9 @@ body {
   body { cursor: auto; }
 }
 
-/* ─── Typography Scale ───────────────────────────── */
-.font-display  { font-family: var(--font-display); }
-.font-mono     { font-family: var(--font-mono); }
+.font-display { font-family: var(--font-display); }
+.font-mono    { font-family: var(--font-mono); }
 
-/* ─── Skip Link ──────────────────────────────────── */
 .skip-link {
   position: fixed;
   top: -100px;
@@ -101,32 +100,27 @@ body {
   outline-offset: 2px;
 }
 
-/* ─── Focus Visible ──────────────────────────────── */
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
   border-radius: var(--radius-sm);
 }
 
-/* ─── Selection ──────────────────────────────────── */
 ::selection {
   background: var(--accent);
   color: var(--bg-primary);
 }
 
-/* ─── Scrollbar ──────────────────────────────────── */
 ::-webkit-scrollbar        { width: 4px; }
 ::-webkit-scrollbar-track  { background: var(--bg-primary); }
 ::-webkit-scrollbar-thumb  { background: var(--border-light); border-radius: 2px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
-/* ─── Section Base ───────────────────────────────── */
 .section {
   position: relative;
   padding: clamp(80px, 10vw, 140px) clamp(24px, 6vw, 120px);
 }
 
-/* ─── Glitch Animation ───────────────────────────── */
 @keyframes glitch-1 {
   0%   { clip-path: inset(20% 0 60% 0); transform: translate(-4px, 0); }
   20%  { clip-path: inset(60% 0 10% 0); transform: translate(4px, 0); }
@@ -144,7 +138,6 @@ body {
   100% { clip-path: inset(50% 0 30% 0); transform: translate(0, 0); }
 }
 
-/* ─── Scanline Effect ────────────────────────────── */
 .scanlines::after {
   content: '';
   position: absolute;
@@ -160,7 +153,6 @@ body {
   z-index: 1;
 }
 
-/* ─── Reduced Motion ─────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.001ms !important;
@@ -169,7 +161,6 @@ body {
   }
 }
 
-/* ─── Utility ────────────────────────────────────── */
 .visually-hidden {
   position: absolute;
   width: 1px;
