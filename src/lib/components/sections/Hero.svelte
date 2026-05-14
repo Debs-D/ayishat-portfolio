@@ -376,8 +376,9 @@
 
 	.canvas-wrapper {
 		position: absolute;
-		inset: 0;
-		width: 100%;
+		top: 0;
+		right: 0;
+		width: 50%;
 		height: 100%;
 		z-index: 1;
 		opacity: 0.7;
