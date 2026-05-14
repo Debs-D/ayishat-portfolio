@@ -51,19 +51,21 @@
 		try {
 			const THREE = await import('three');
 			const scene    = new THREE.Scene();
-			const camera   = new THREE.PerspectiveCamera(75, canvasEl.clientWidth / canvasEl.clientHeight, 0.1, 1000);
+			const w = window.innerWidth;
+			const h = window.innerHeight;
+			const camera   = new THREE.PerspectiveCamera(75, w / h, 0.1, 1000);
 			const renderer = new THREE.WebGLRenderer({ canvas: canvasEl, alpha: true, antialias: false });
 
-			renderer.setSize(canvasEl.clientWidth, canvasEl.clientHeight);
+			renderer.setSize(w, h);
 			renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 			camera.position.z = 4;
 
-			const count = 900;
+			const count = 1200;
 			const positions  = new Float32Array(count * 3);
 			const velocities = new Float32Array(count * 3);
 			for (let i = 0; i < count; i++) {
-				positions[i * 3]     = (Math.random() - 0.5) * 10;
-				positions[i * 3 + 1] = (Math.random() - 0.5) * 10;
+				positions[i * 3]     = (Math.random() - 0.5) * 18;
+				positions[i * 3 + 1] = (Math.random() - 0.5) * 12;
 				positions[i * 3 + 2] = (Math.random() - 0.5) * 6;
 				velocities[i * 3]     = (Math.random() - 0.5) * 0.002;
 				velocities[i * 3 + 1] = (Math.random() - 0.5) * 0.002;
@@ -92,10 +94,11 @@
 			window.addEventListener('mousemove', onMouseMove);
 
 			const onResize = () => {
-				if (!canvasEl) return;
-				camera.aspect = canvasEl.clientWidth / canvasEl.clientHeight;
+				const rw = window.innerWidth;
+				const rh = window.innerHeight;
+				camera.aspect = rw / rh;
 				camera.updateProjectionMatrix();
-				renderer.setSize(canvasEl.clientWidth, canvasEl.clientHeight);
+				renderer.setSize(rw, rh);
 			};
 			window.addEventListener('resize', onResize);
 
@@ -107,10 +110,10 @@
 				for (let i = 0; i < count; i++) {
 					pos[i * 3]     += velocities[i * 3];
 					pos[i * 3 + 1] += velocities[i * 3 + 1];
-					if (pos[i * 3] > 5)       pos[i * 3] = -5;
-					if (pos[i * 3] < -5)      pos[i * 3] = 5;
-					if (pos[i * 3 + 1] > 5)   pos[i * 3 + 1] = -5;
-					if (pos[i * 3 + 1] < -5)  pos[i * 3 + 1] = 5;
+					if (pos[i * 3] > 9)       pos[i * 3] = -9;
+					if (pos[i * 3] < -9)      pos[i * 3] = 9;
+					if (pos[i * 3 + 1] > 6)   pos[i * 3 + 1] = -6;
+					if (pos[i * 3 + 1] < -6)  pos[i * 3 + 1] = 6;
 				}
 				geo.attributes.position.needsUpdate = true;
 
