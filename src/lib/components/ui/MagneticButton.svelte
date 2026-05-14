@@ -3,6 +3,7 @@
 
 	interface Props {
 		href?: string;
+		target?: string;
 		variant?: 'primary' | 'outline' | 'ghost';
 		type?: 'button' | 'submit' | 'reset';
 		disabled?: boolean;
@@ -13,6 +14,7 @@
 
 	let {
 		href,
+		target,
 		variant = 'primary',
 		type = 'button',
 		disabled = false,
@@ -50,6 +52,8 @@
 	<a
 		bind:this={el}
 		{href}
+		{target}
+		rel={target === '_blank' ? 'noopener noreferrer' : undefined}
 		class="mag-btn {variant}"
 		aria-label={ariaLabel}
 		onmousemove={onMouseMove}
